@@ -11,11 +11,19 @@ public class Catalogo {
         this.elementi = new ArrayList<>();
         this.isbnSet = new HashSet<>();
     }
+    
+    public List<Lettura> getElementi() {
+        return elementi;
+    }
+
+    public void setElementi(List<Lettura> elementi) {
+        this.elementi = elementi;
+    }
 
     public String generaISBN() {
         String nuovoISBN;
         do {
-            nuovoISBN = UUID.randomUUID().toString();
+            nuovoISBN = UUID.randomUUID().toString(); //genera un identificatore universale univoco (UUID) che è molto difficile da duplicare
         } while (isbnSet.contains(nuovoISBN));
         isbnSet.add(nuovoISBN);
         return nuovoISBN;
@@ -55,7 +63,7 @@ public class Catalogo {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             for (Lettura elemento : elementi) {
                 if (elemento instanceof Libro libro) {
-                    writer.printf("LIBRO;%s;%s;%d;%d;%s;%s%n",
+                    writer.printf("LIBRO;%s;%s;%d;%d;%s;%s%n", //PLACEHOLDERS: %s => Stringa, %d => int, %n => newLine
                             libro.getCodiceISBN(),
                             libro.getTitolo(),
                             libro.getAnnoPubblicazione(),
@@ -103,11 +111,5 @@ public class Catalogo {
         this.elementi = loadedElements;
     }
 
-    public List<Lettura> getElementi() {
-        return elementi;
-    }
 
-    public void setElementi(List<Lettura> elementi) {
-        this.elementi = elementi;
-    }
 }
