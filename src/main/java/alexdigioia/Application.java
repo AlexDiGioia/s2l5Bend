@@ -1,7 +1,6 @@
 package alexdigioia;
 
 import alexdigioia.libreria.Catalogo;
-import alexdigioia.libreria.Lettura;
 
 import java.util.Scanner;
 
@@ -17,7 +16,7 @@ public class Application {
         while (true) {
             mostraMenu();
             int scelta = scanner.nextInt();
-            scanner.nextLine();  // Consuma il newline
+            scanner.nextLine();
 
             switch (scelta) {
                 case 1:
@@ -62,3 +61,4 @@ public class Application {
         System.out.println("8. Esci");
         System.out.print("Scegli un'opzione: ");
     }
+}
